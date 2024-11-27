@@ -4,19 +4,14 @@
 
 Flask-based translation API. The service validates, cleanses, and translate English words into a target language using LibreTranslate, ensuring accurate and duplicate-free results. 
 
-
-- What was your motivation?
-- Why did I build this project? 
-- What problem does it solve?
-- What did I learn?
-
 ## Table of Contents
-
 
 - [Installation](#installation)
 - [Usage](#usage)
 - [Credits](#credits)
 - [License](#license)
+
+# Getting started guide 
 
 ## Installation
 
@@ -31,6 +26,29 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
     ```md
     ![alt text](assets/images/screenshot.png)
     ```
+
+## My Experience
+
+- What was your motivation?
+- Why did I build this project? 
+- What problem does it solve?
+- What did I learn?
+
+- What particular libraries? Why?
+- Assumptions? Shortcuts?
+- Challenges? Overcome how?
+
+My first major challenge involved setting up the libretranslate library, which is critical for handling translations in my project. The initial plan was to install libretranslate directly into my Python environment. However, I encountered persistent issues with the installation of a dependency called PyICU, which required compiling native C++ code and configuring paths for the ICU library. Despite trying multiple fixes, including setting environment variables, reinstalling tools like pkg-config, and even forcing prebuilt wheels, the build process for PyICU kept failing.
+
+The installation process for PyICU required deep integration with system-level libraries and C++ compilers, which are highly sensitive to configurations.
+This process consumed significant time and effort without success.
+
+I also realised that these issues were specific to my system (macOS with Homebrew), adding an additional layer of complexity.
+
+Given the time constraints and the goal of delivering a working solution, I decided to pivot to using Docker. Docker allows me to run LibreTranslate as a standalone container, which bypasses all the installation and configuration issues. This is my first time using Docker, so I had to learn and set it up as part of the solution.
+
+- Extra features?
+- More time, what else would I implement? 
 
 ## Credits
 
