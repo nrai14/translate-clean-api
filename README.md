@@ -41,6 +41,7 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 My first major challenge involved setting up the libretranslate library, which is critical for handling translations in my project. The initial plan was to install libretranslate directly into my Python environment. However, I encountered persistent issues with the installation of a dependency called PyICU, which required compiling native C++ code and configuring paths for the ICU library. Despite trying multiple fixes, including setting environment variables, reinstalling tools like pkg-config, and even forcing prebuilt wheels, the build process for PyICU kept failing.
 
 The installation process for PyICU required deep integration with system-level libraries and C++ compilers, which are highly sensitive to configurations.
+
 This process consumed significant time and effort without success.
 
 I also realised that these issues were specific to my system (macOS with Homebrew), adding an additional layer of complexity.
