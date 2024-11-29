@@ -15,7 +15,7 @@ import pandas as pd
 
 
 def index():
-    return "Welcome to Nish's Translation API"
+    return "Welcome to Nish's Translation API - where you give us your text, and we'll do the rest!"
 
 def validate_request_data(data):
     required_keys = ('q', 'source', 'target')
