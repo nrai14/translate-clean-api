@@ -13,20 +13,16 @@ import requests
 def index():
     return "Welcome to Nish's Translation API"
 
+def validate_request_data(data):
+    required_keys = ('q', 'source', 'target')
+    return data and all(key in data for key in required_keys)
+
 @app.route('/translate', methods=['POST'])
 def translate():
-
     data = request.get_json()
 
-    response = requests.post(
-        "https://libretranslate.com/translate",
-        json={
-            "q": data.get("q"),
-            "source": data.get("source"),
-            "target": data.get("target"),
-        },
-        headers={"Content-Type": "application/json"},
-    )
+    if not validate_request_data(data):
+        return jsonify({"error": "Missing required fields"}), 400 
+    return jsonify({"message": "Validation passed!", "data": data})
 
-    # Return LibreTranslate's response as JSON
-    return jsonify(response.json())
+# TLDR - Route definition. Where the magic happens...

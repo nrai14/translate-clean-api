@@ -11,3 +11,5 @@ app = Flask(__name__)
 from app import routes
 
 # Creates application object as an instance of class Flask imported from the Flask package 
+
+# TLDR - app set up ONLY
