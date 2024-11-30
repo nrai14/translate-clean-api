@@ -1,0 +1,32 @@
+# Node.js dependencies
+node_modules/
+
+# TypeScript build output
+*.js
+*.js.map
+*.d.ts
+
+# Python virtual environment
+venv/
+
+# Excel files (if generated or temporary)
+*.xlsx
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# macOS-specific files
+.DS_Store
+
+# Editor-specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Ignore compiled Python files
+*.pyc
+__pycache__/
