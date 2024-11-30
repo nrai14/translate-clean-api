@@ -12,8 +12,6 @@ import pandas as pd
 @app.route('/index')
 
 
-
-
 def index():
     return "Welcome to Nish's Translation API - where you give us your text, and we'll do the rest!"
 
