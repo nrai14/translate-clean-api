@@ -2,7 +2,7 @@ import axios from "axios";
 import * as ExcelJS from "exceljs";
 
 const TRANSLATION_SERVICE_URL = "http://127.0.0.1:5000/translate";
-const WORDS_FILE_PATH = "/wordsToTranslate.xlsx";
+const WORDS_FILE_PATH = "data/wordsToTranslate.xlsx";
 const RESULTS_FILE_PATH = "results/translatedWords.xlsx";
 const TARGET_LANGUAGES = ["es", "fr", "de"];
 
