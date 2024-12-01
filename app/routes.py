@@ -3,6 +3,8 @@ from flask import jsonify, request
 import requests
 import logging
 import re
+from spellchecker import SpellChecker
+
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -10,10 +12,20 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(
 @app.route('/')
 @app.route('/index')
 def index():
-    return "Welcome to Nish's Translation API!"
+    return "Welcome to Nish's Translation API. Where you provide the text, and we'll translate the rest"
 
 def cleanse_word(word):
-    return re.sub(r"[^a-z\s]", "", word.lower())  # Remove special characters
+    spell = SpellChecker()
+    # Step 1: Remove special characters and convert to lowercase
+    cleaned_word = re.sub(r"[^a-z\s]", "", word.lower())
+    # Step 2: Check if the word is misspelled
+    misspelled = spell.unknown([cleaned_word])  # SpellChecker expects a list
+    # Step 3: Correct the word if it's misspelled
+    if misspelled:
+        corrected_word = spell.correction(cleaned_word)  # Get the most probable correction
+        logging.info(f"Word '{word}' corrected to '{corrected_word}'")
+        return corrected_word
+    return cleaned_word
 
 def validate_request_data(data):
     required_keys = ('words', 'targetLanguage')

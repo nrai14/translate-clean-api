@@ -1,25 +1,20 @@
 {
-  "name": "translate-clean-api",
+  "name": "interview",
   "version": "1.0.0",
-  "description": "## Description",
+  "description": "Cirevo take-home translation task.",
   "main": "index.js",
-  "directories": {
-    "test": "tests"
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "mkdir -p results && ts-node src/translate-wrapper.ts"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Cirevo",
   "license": "ISC",
   "dependencies": {
-    "axios": "^1.7.8",
-    "exceljs": "^4.4.0"
+    "axios": "^1.6.7",
+    "exceljs": "^4.4.0",
+    "typescript": "^5.3.3"
   },
   "devDependencies": {
-    "@types/axios": "^0.9.36",
-    "@types/exceljs": "^0.5.3",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.7.2"
+    "@types/node": "^20.11.18",
+    "ts-node": "^10.9.2"
   }
 }
