@@ -5,28 +5,24 @@ import logging
 import re
 from spellchecker import SpellChecker
 
-
 # Set up logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
+# Define the index route
 @app.route('/')
 @app.route('/index')
 def index():
-    return "Welcome to Nish's Translation API. Where you provide the text, and we'll translate the rest"
+    return "Welcome to Nish's Translation API. Where you provide the text, and we'll translate the rest!"
 
+# Cleanse and spell-check words
 def cleanse_word(word):
     spell = SpellChecker()
-    # Step 1: Remove special characters and convert to lowercase
-    cleaned_word = re.sub(r"[^a-z\s]", "", word.lower())
-    # Step 2: Check if the word is misspelled
-    misspelled = spell.unknown([cleaned_word])  # SpellChecker expects a list
-    # Step 3: Correct the word if it's misspelled
-    if misspelled:
-        corrected_word = spell.correction(cleaned_word)  # Get the most probable correction
-        logging.info(f"Word '{word}' corrected to '{corrected_word}'")
-        return corrected_word
-    return cleaned_word
+    # Remove special characters and convert to lowercase
+    clean_word = re.sub(r"[^a-z\s]", "", word.lower())  
+    misspelled = spell.unknown([clean_word])  # Check for misspellings
+    return spell.correction(clean_word) if clean_word in misspelled else clean_word
 
+# Validate the request payload
 def validate_request_data(data):
     required_keys = ('words', 'targetLanguage')
     return data and all(key in data and isinstance(data[key], list if key == "words" else str) for key in required_keys)
@@ -46,25 +42,31 @@ def translate():
         words = list(set(data["words"]))  # Deduplicate words
         target_language = data["targetLanguage"]
 
-        translated_words = []
+        # Changed to batch processing for faster time
+        # Clean all words in a batch
+        clean_words = [cleanse_word(word) for word in words]
 
-        for word in words:
-            clean_word = cleanse_word(word)
-            payload = {"q": clean_word, "source": "en", "target": target_language}
-            logging.info(f"Translating word '{word}' with payload: {payload}")
+        # Create a single batch payload for all words
+        payload = {"q": clean_words, "source": "en", "target": target_language}
+        logging.info(f"Batch translating words with payload: {payload}")
 
-            # Make the request to LibreTranslate
-            response = requests.post(localURL, json=payload, headers={"Content-Type": "application/json"})
-            if response.status_code == 200:
-                translated_text = response.json().get("translatedText", "")
-                translated_words.append({"originalWord": word, "translatedWord": translated_text})
-            else:
-                logging.error(f"Error translating word '{word}': {response.text}")
-                return jsonify({"error": "Translation failed", "details": response.text}), 500
+        # Make a single POST request for the batch
+        response = requests.post(localURL, json=payload, headers={"Content-Type": "application/json"})
+        
+        if response.status_code == 200:
+            # Extract translations for all words
+            translations = response.json().get("translatedText", [])
+            translated_words = [
+                {"originalWord": word, "translatedWord": translation}
+                for word, translation in zip(words, translations)
+            ]
+        else:
+            logging.error(f"Batch translation error: {response.text}")
+            return jsonify({"error": "Batch translation failed", "details": response.text}), 500
 
         # Prepare and return the response
         response_data = {"words": translated_words, "targetLanguage": target_language}
-        logging.info(f"Translation response: {response_data}")
+        logging.info(f"Batch translation response: {response_data}")
         return jsonify(response_data), 200
 
     except Exception as e:
