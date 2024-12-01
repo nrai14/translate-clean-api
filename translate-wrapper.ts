@@ -48,7 +48,7 @@ async function translateWords(
 
     try {
       const response = await axios.post(TRANSLATION_SERVICE_URL, requestBody);
-      translationResponses.push(response.data);
+      translationResponses.push(response.data as TranslateResponseBody);
     } catch (error) {
       console.error(
         `Error calling the translate endpoint ${TRANSLATION_SERVICE_URL} with target language ${targetLanguage}:`,

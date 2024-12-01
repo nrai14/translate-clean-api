@@ -13,7 +13,7 @@ def index():
     return "Welcome to Nish's Translation API!"
 
 def cleanse_word(word):
-    return re.sub(r"[^a-zA-Z0-9\s]", "", word)  # Remove special characters
+    return re.sub(r"[^a-z\s]", "", word.lower())  # Remove special characters
 
 def validate_request_data(data):
     required_keys = ('words', 'targetLanguage')
