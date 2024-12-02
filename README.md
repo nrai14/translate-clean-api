@@ -22,20 +22,25 @@ The following are required to be installed on your system to get the development
 * Docker
 
 ### Step 1: Clone the Repository 
+- In the terminal run:
 * git clone git@github.com:nrai14/translate-clean-api.git
-* cd into the folder
+* then "cd" into the folder
 
 ### Step 2: Install Node.js Dependencies 
 * npm install
 
 ### Step 3: Install Python Dependencies
+- In the terminal run:
 * python3 -m venv venv 
 * source venv/bin/activate (for Mac) or venv/Scripts/activate (for Windows)
 * pip install -r requirements.txt 
 
 ### Step 4: Start the LibreTranslate API
-* docker pull libretranslate/libretranslate
-* docker run -d -p 5002:5000 libretranslate/libretranslate
+- In the terminal run:
+* docker-compose up -d
+(this will create the containerised LibreTranslate on port 5002)
+* docker-compose ps
+(checks the service is running)
 (verify it's running with curl http://localhost:5002 - you should see a response)
 
 
@@ -60,6 +65,10 @@ The following are required to be installed on your system to get the development
 ### Step 4: Check results
 * Open the results/translatedWords.xlsx file to view the translations
 * Each target langauge will have its own sheet
+
+## Step 5: Stop Service 
+- When you're finished, run this in the terminal:
+* docker-compose down 
 
 ### Things to note:
 * There could be excel file compatibility issues - e.g. on macOS, if the file doesn't open immediately, please use Google Sheets
@@ -141,7 +150,7 @@ I had to quickly learn:
 - How to manage Docker networks and ports to integrate it with my Flask backend.
 - Ultimately, this pivot was successful, and it not only resolved the dependency issues but also taught me a valuable new skill.
 
-Another challenge arose when implementing batch processing for translations. The initial implementation processed each word one by one, resulting in high latency due to the overhead of individual API calls. This was inefficient and not scalable. To address this, I implemented a batching mechanism that grouped words into arrays and sent them to the LibreTranslate API in a single request. This change significantly improved the performance of the translation process. However, it required careful handling of the Node.js wrapper and Flask API integration to ensure compatibility.
+Another challenge arose when implementing batch processing for translations. The initial implementation processed each word one by one, resulting in high latency due to the overhead of individual API calls. This was inefficient and not scalable. To address this, I implemented a batching mechanism that sent them to the LibreTranslate API in a single request. This change significantly improved the performance of the translation process. 
 
 Finally, integrating a spell-checking API added its own complexity. It was important to ensure that the spell checker did not interfere with valid words, especially in a multilingual context. After exploring various libraries, I selected pyspellchecker for its simplicity and efficiency. Incorporating it required cleansing words of special characters, converting them to lowercase, and ensuring that incorrectly spelled words were flagged and corrected before translation.
 
@@ -157,6 +166,7 @@ These challenges collectively pushed me to:
 
 - Performance Logging 
 - Error Handling
+- Self-Hosting with Docker (no need for API keys/quotas imposed + No external dependencies + Unlimited requests)
 
 ### If I had more time, what else would I implement? 
 
@@ -186,6 +196,7 @@ curl -X POST http://localhost:5002/translate \
 
 * For the above, if you receive "curl: (52) Empty reply from server" then LibreTranslate has not been set up correctly in a Docker container. Please use "docker ps" to show all running containers and their IDs. Then use "docker restart CONTAINER ID". Please try the curl command again. 
 * Note: sometimes in the split terminal, where you are running the "npm run start" being in the virtual environment causes issues. Run "deactivate" if you see you are in "venv" in the split terminal
+* Occasionally, if you have multiple containers (non-active) running, Docker might not have the space to run properly. There is an option to run "docker container prune" in the terminal to remove all stopped containers to reclaim space. 
 * For further issues, please feel free to email me on: nishadrai14@gmail.com and I'll be more than happy to assist. 
 
 
