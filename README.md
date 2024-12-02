@@ -8,6 +8,7 @@ Flask-based translation API. The service validates, cleanses, and translate Engl
 
 - [Installation](#installation)
 - [Usage](#usage)
+- [Testing](#testing)
 - [Credits](#credits)
 - [License](#license)
 
@@ -175,8 +176,10 @@ These challenges collectively pushed me to:
 * Enhanced spell checking - there might be more advanced spell-checking functionality with other APIs
 * Custom target language - allow users to choose what langauge they wish to translate to
 * Progress tracking - with large datasets, it might be useful for users to see real-time progress on the status of their request (perhaps have a countdown completion timer)
-* Set up automated tests for core functionalities 
+* More detailed mocking external APIs - API timeouts/netowrk errors/weird response formats/error codes
+* Load and Performance testing - see if my app can handle even larger payloads/many requests without crashing 
 * More advanced ReadMe - with further time, perhaps expanding this ReadMe with ways developers can contribute/customise the project for their own needs would be great
+
 
 
 ## Troubleshooting
@@ -199,6 +202,18 @@ curl -X POST http://localhost:5002/translate \
 * Occasionally, if you have multiple containers (non-active) running, Docker might not have the space to run properly. There is an option to run "docker container prune" in the terminal to remove all stopped containers to reclaim space. 
 * For further issues, please feel free to email me on: nishadrai14@gmail.com and I'll be more than happy to assist. 
 
+
+## Testing 
+
+- This project uses Pytest for testing - covers both API endpoints and utility functions. 
+- Important for confidence when making changes in the future
+- In the command (if not already done so):
+* pip install -r requirements.txt 
+(Because we need Pytest)
+* PYTHONPATH=. pytest
+(Runs all tests, navigates to the project's root directory and executes)
+- Test results will be displayed in the terminal 
+- Uses requests-mock to simulate LibreTranslate API during testing (ensures tests don't dpeend on the external API being available)
 
 ## Credits
 
