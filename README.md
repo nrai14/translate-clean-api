@@ -74,7 +74,7 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 ### What was my motivation?
 
-I embarked on this project to push my technical skills to the next level. Having worked with Python and Java in the past, I wanted to challenge myself by incorporating new tools like Docker and integrating multiple APIs into a cohesive application. My goal was to gain hands-on experience with setting up Flask backends, using Node.js wrappers, and tackling real-world issues like batch processing, error handling, and scalability.
+I embarked on this project to push my technical skills to the next level. Having worked with Python, JavaScript and Java in the past, I wanted to challenge myself by incorporating new tools like Docker and integrating multiple APIs into a cohesive application. My goal was to gain hands-on experience with setting up Flask backends, using Node.js wrappers, and tackling real-world issues like batch processing, error handling, and scalability.
 
 This project was also an opportunity to revisit foundational skills I learned during Makers Academy, such as test-driven development and Agile practices, while exploring new technologies that are relevant in today’s software development landscape.
 
@@ -179,6 +179,7 @@ These challenges collectively pushed me to:
 * https://www.codecademy.com/resources/docs/python/regex/sub (For writing cleanse_method)
 * https://pyspellchecker.readthedocs.io/en/latest/ (psyspellchecker documentation)
 * https://github.com/LibreTranslate/LibreTranslate (LibreTranslate GitHub Repo)
+* https://chatgpt.com/share/674daca7-a1ec-8006-b85f-0bb076f82fdc (Conversation with ChatGPT on optimising processing time)
 * https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide (For writing a banging ReadMe document)
 
 

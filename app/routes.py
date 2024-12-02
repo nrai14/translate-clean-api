@@ -4,23 +4,32 @@ import requests
 import logging
 import re
 from spellchecker import SpellChecker
+import time
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
-# Define the index route
+# Instantiate SpellChecker globally to avoid repeated initialisation
+spell = SpellChecker()
+
 @app.route('/')
 @app.route('/index')
 def index():
     return "Welcome to Nish's Translation API. Where you provide the text, and we'll translate the rest!"
 
 # Cleanse and spell-check words
-def cleanse_word(word):
-    spell = SpellChecker()
-    # Remove special characters and convert to lowercase
-    clean_word = re.sub(r"[^a-z\s]", "", word.lower())  
-    misspelled = spell.unknown([clean_word])  # Check for misspellings
-    return spell.correction(clean_word) if clean_word in misspelled else clean_word
+def cleanse_words(words):
+    # Start timing for this function
+    start_time = time.perf_counter()
+    
+    # Remove special characters, convert to lowercase, and correct misspelled words in a batch
+    cleaned_words = [re.sub(r"[^a-z\s]", "", word.lower()) for word in words]
+    misspelled = spell.unknown(cleaned_words)
+    corrected_words = [spell.correction(word) if word in misspelled else word for word in cleaned_words]
+
+    # Log the timing
+    logging.info(f"Cleaned and spell-checked {len(words)} words in {time.perf_counter() - start_time:.2f} seconds.")
+    return corrected_words
 
 # Validate the request payload
 def validate_request_data(data):
@@ -42,9 +51,16 @@ def translate():
         words = list(set(data["words"]))  # Deduplicate words
         target_language = data["targetLanguage"]
 
-        # Changed to batch processing for faster time
-        # Clean all words in a batch
-        clean_words = [cleanse_word(word) for word in words]
+        # Start timing for cleansing words
+        start_time_cleaning = time.perf_counter()
+
+        # Cleanse words in a batch
+        clean_words = cleanse_words(words)
+
+        logging.info(f"Total time for cleansing words: {time.perf_counter() - start_time_cleaning:.2f} seconds.")
+
+        # Start timing for batch translation
+        start_time_translation = time.perf_counter()
 
         # Create a single batch payload for all words
         payload = {"q": clean_words, "source": "en", "target": target_language}
@@ -63,6 +79,9 @@ def translate():
         else:
             logging.error(f"Batch translation error: {response.text}")
             return jsonify({"error": "Batch translation failed", "details": response.text}), 500
+
+        # Log timing for translation
+        logging.info(f"Total time for batch translation: {time.perf_counter() - start_time_translation:.2f} seconds.")
 
         # Prepare and return the response
         response_data = {"words": translated_words, "targetLanguage": target_language}
