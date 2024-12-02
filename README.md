@@ -25,23 +25,23 @@ The following are required to be installed on your system to get the development
 
 ### Step 1: Clone the Repository 
 - In the terminal run:
-* git clone git@github.com:nrai14/translate-clean-api.git
-* then "cd" into the folder
+    * git clone git@github.com:nrai14/translate-clean-api.git
+    * then "cd" into the folder
 
 ### Step 2: Install Node.js Dependencies 
-* npm install
+    * npm install
 
 ### Step 3: Install Python Dependencies
 - In the terminal run:
-* python3 -m venv venv 
-* source venv/bin/activate (for Mac) or venv/Scripts/activate (for Windows)
-* pip install -r requirements.txt 
+    * python3 -m venv venv 
+    * source venv/bin/activate (for Mac) or venv/Scripts/activate (for Windows)
+    * pip install -r requirements.txt 
 
 ### Step 4: Start the LibreTranslate API
 - In the terminal run:
-* docker-compose up -d
+    * docker-compose up -d
 (this will create the containerised LibreTranslate on port 5002)
-* docker-compose ps
+    * docker-compose ps
 (checks the service is running)
 (verify it's running with curl http://localhost:5002 - you should see a response)
 
@@ -70,7 +70,7 @@ The following are required to be installed on your system to get the development
 
 ## Step 5: Stop Service 
 - When you're finished, run this in the terminal:
-* docker-compose down 
+    * docker-compose down 
 
 ### Things to note:
 * There could be excel file compatibility issues - e.g. on macOS, if the file doesn't open immediately, please use Google Sheets
@@ -119,12 +119,12 @@ New Skills:
 
 ### Assumptions 
 
-* Design Assumptions
+#### Design Assumptions
 - Assumed input would be mostly single words in English
 - Believed LibreTranslate's batch processing would work without modification
 - Assumed Docker would handle API hosting seamlessly
 
-* Mistaken Assumptions
+#### Mistaken Assumptions
 - Somehow embarrassingly overlooked the translate-wrapper.ts and went down a rabbit hole of using xlwings/pandas to manually extract data
 - Thought LibreTranslate would process a bulk list of words without adapting its input format
 
@@ -207,9 +207,9 @@ curl -X POST http://localhost:5002/translate \
 - This project uses Pytest for testing - covers both API endpoints and utility functions. 
 - Important for confidence when making changes in the future
 - In the command (if not already done so):
-* pip install -r requirements.txt 
+    * pip install -r requirements.txt 
 (Because we need Pytest)
-* PYTHONPATH=. pytest
+    * PYTHONPATH=. pytest
 (Runs all tests, navigates to the project's root directory and executes)
 - Test results will be displayed in the terminal 
 - Uses requests-mock to simulate LibreTranslate API during testing (ensures tests don't dpeend on the external API being available)
@@ -227,6 +227,13 @@ curl -X POST http://localhost:5002/translate \
 * https://www.geeksforgeeks.org/time-perf_counter-function-in-python/ (Logging timing for processes)
 * https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide (For writing a banging ReadMe document)
 
+## Features
+
+* Spell Check and Cleaning (remove special characters and correct misspellings)
+* Translation API Integration (POST requests to LibreTranslate's API which is containerised with Docker)
+* Error Handling (returns error responses for validation and API errors)
+* Batch translations (for faster processing)
+* Logging and Performance monitoring (measures + logs time for cleaning words. Provides insights into bottlenecks)
 
 ## License
 
@@ -252,13 +259,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-## Features
-
-* Spell Check and Cleaning (remove special characters and correct misspellings)
-* Translation API Integration (POST requests to LibreTranslate's API which is containerised with Docker)
-* Error Handling (returns error responses for validation and API errors)
-* Batch translations (for faster processing)
-* Logging and Performance monitoring (measures + logs time for cleaning words. Provides insights into bottlenecks)
 
 
 
