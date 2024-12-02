@@ -43,25 +43,27 @@ The following are required to be installed on your system to get the development
 ## Usage
 
 ### Step 1: Run the Flask Backend
-* source venv/bin/activate
-* flask run 
+* In the terminal enter: source venv/bin/activate
+* In the terminal enter: flask run 
 (the backend will be available at http://127.0.0.1:5000)
 
 ### Step 2: Prepare the Input File
 * Place words you wish to translate within the Excel file - data/wordsToTranslate.xlsx
 * Ensure words are only the first column 
+* If you want to see how this API works, the data/wordsToTranslate.xlsx is already filled with data to try
 
 ### Step 3: Run the Node.js wrapper
-* npm run start 
+* Open a split terminal 
+* In the split terminal enter: - npm run start 
 (this runs the wrapper, processes translations, and saves the result as an .xlsx file in the results folder)
 
 ### Step 4: Check results
-* Open the results/translatedWords.xlsx file to view teh translations
+* Open the results/translatedWords.xlsx file to view the translations
 * Each target langauge will have its own sheet
 
 ### Things to note:
 * There could be excel file compatibility issues - e.g. on macOS, if the file doesn't open immediately, please use Google Sheets
-* For any set up issues, please see [Troubleshooting] (#troubleshooting)
+* For any set up issues, please see [Troubleshooting](#troubleshooting)
 
 
 
@@ -178,9 +180,12 @@ These challenges collectively pushed me to:
 curl -X POST http://localhost:5002/translate \
 -H "Content-Type: application/json" \
 -d '{"q":"hello","source":"en","target":"es"}'
+
+* The above should return this if it's all working:
 {"translatedText":"hola"}
 
 * For the above, if you receive "curl: (52) Empty reply from server" then LibreTranslate has not been set up correctly in a Docker container. Please use "docker ps" to show all running containers and their IDs. Then use "docker restart CONTAINER ID". Please try the curl command again. 
+* Note: sometimes in the split terminal, where you are running the "npm run start" being in the virtual environment causes issues. Run "deactivate" if you see you are in "venv" in the split terminal
 * For further issues, please feel free to email me on: nishadrai14@gmail.com and I'll be more than happy to assist. 
 
 
