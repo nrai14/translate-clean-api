@@ -158,6 +158,8 @@ These challenges collectively pushed me to:
 
 ### Extra features?
 
+- Performance Logging 
+- Error Handling
 
 ### If I had more time, what else would I implement? 
 
@@ -180,28 +182,42 @@ These challenges collectively pushed me to:
 * https://pyspellchecker.readthedocs.io/en/latest/ (psyspellchecker documentation)
 * https://github.com/LibreTranslate/LibreTranslate (LibreTranslate GitHub Repo)
 * https://chatgpt.com/share/674daca7-a1ec-8006-b85f-0bb076f82fdc (Conversation with ChatGPT on optimising processing time)
+* https://www.geeksforgeeks.org/time-perf_counter-function-in-python/ (Logging timing for processes)
 * https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide (For writing a banging ReadMe document)
 
 
 ## License
 
-The last section of a high-quality README file is the license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, refer to [https://choosealicense.com/](https://choosealicense.com/).
+MIT License
 
----
+Copyright (c) [2024] [Nishad Rai]
 
-🏆 The previous sections are the bare minimum, and your project will ultimately determine the content of this document. You might also want to consider adding the following sections.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-## Badges
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-![badmath](https://img.shields.io/github/languages/top/lernantino/badmath)
-
-Badges aren't necessary, per se, but they demonstrate street cred. Badges let other developers know that you know what you're doing. Check out the badges hosted by [shields.io](https://shields.io/). You may not understand what they all represent now, but you will in time.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
 ## Features
 
-If this project ends up has a lot of features, list here
+* Spell Check and Cleaning (remove special characters and correct misspellings)
+* Translation API Integration (POST requests to LibreTranslate's API which is containerised with Docker)
+* Error Handling (returns error responses for validation and API errors)
+* Batch translations (for faster processing)
+* Logging and Performance monitoring (measures + logs time for cleaning words. Provides insights into bottlenecks)
 
 
 ## Tests
 
-Go the extra mile and write tests for your application. Then provide examples on how to run them here.
