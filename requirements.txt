@@ -1,6 +1,8 @@
 Flask==3.1.0
 requests==2.32.3
 pyspellchecker==0.8.1
+pytest==8.3.4
+requests-mock==1.12.1
 langdetect==1.0.9
 openpyxl==3.1.5
 Werkzeug==3.1.3
