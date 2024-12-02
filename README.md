@@ -8,6 +8,7 @@ Flask-based translation API. The service validates, cleanses, and translate Engl
 
 - [Installation](#installation)
 - [Usage](#usage)
+- [My Experience](#my-experience)
 - [Testing](#testing)
 - [Credits](#credits)
 - [License](#license)
@@ -112,8 +113,6 @@ New Skills:
 
 * Flask: Lightweight framework for building the backend.
 * SpellChecker: To clean and correct input words before translation.
-* Pandas: Initially used for Excel processing before transitioning to ExcelJS.
-* ExcelJS: For efficient handling of Excel files in Node.js.
 * Docker: To containerise and deploy LibreTranslate for local API calls.
 * LibreTranslate: Translation API for handling multilingual requests.
 * Node.js: To test a scalable wrapper for batch translation.
@@ -192,10 +191,10 @@ These challenges collectively pushed me to:
 
 curl -X POST http://localhost:5002/translate \
 -H "Content-Type: application/json" \
--d '{"q":"hello","source":"en","target":"es"}'
+-d '{"q":"hello","source":"en","target":"fr"}'
 
 * The above should return this if it's all working:
-{"translatedText":"hola"}
+{"translatedText":"bonjour"}
 
 * For the above, if you receive "curl: (52) Empty reply from server" then LibreTranslate has not been set up correctly in a Docker container. Please use "docker ps" to show all running containers and their IDs. Then use "docker restart CONTAINER ID". Please try the curl command again. 
 * Note: sometimes in the split terminal, where you are running the "npm run start" being in the virtual environment causes issues. Run "deactivate" if you see you are in "venv" in the split terminal
@@ -262,5 +261,5 @@ SOFTWARE.
 * Logging and Performance monitoring (measures + logs time for cleaning words. Provides insights into bottlenecks)
 
 
-## Tests
+
 
