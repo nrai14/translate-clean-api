@@ -48,14 +48,20 @@ def translate():
         if not validate_request_data(data):
             return jsonify({"error": "Invalid request data"}), 400
 
-        words = list(set(data["words"]))  # Deduplicate words
+        
         target_language = data["targetLanguage"]
 
         # Start timing for cleansing words
         start_time_cleaning = time.perf_counter()
 
         # Cleanse words in a batch
-        clean_words = cleanse_words(words)
+        clean_words = cleanse_words(data["words"])
+
+        # Changed deduplicate to occur AFTER cleansing 
+        logging.info(f"Words before deduplication: {clean_words}")
+        deduplicated_words = list(set(clean_words))
+        logging.info(f"Words after deduplication: {deduplicated_words}")
+
 
         logging.info(f"Total time for cleansing words: {time.perf_counter() - start_time_cleaning:.2f} seconds.")
 
@@ -63,7 +69,7 @@ def translate():
         start_time_translation = time.perf_counter()
 
         # Create a single batch payload for all words
-        payload = {"q": clean_words, "source": "en", "target": target_language}
+        payload = {"q": deduplicated_words, "source": "en", "target": target_language}
         logging.info(f"Batch translating words with payload: {payload}")
 
         # Make a single POST request for the batch
@@ -74,7 +80,7 @@ def translate():
             translations = response.json().get("translatedText", [])
             translated_words = [
                 {"originalWord": word, "translatedWord": translation}
-                for word, translation in zip(words, translations)
+                for word, translation in zip(deduplicated_words, translations)
             ]
         else:
             logging.error(f"Batch translation error: {response.text}")
