@@ -61,13 +61,8 @@ The following are required to be installed on your system to get the development
 
 ### Things to note:
 * There could be excel file compatibility issues - e.g. on macOS, if the file doesn't open immediately, please use Google Sheets
+* For any set up issues, please see [Troubleshooting] (#troubleshooting)
 
-
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
-
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
 
 
 ## My Experience
@@ -170,6 +165,23 @@ These challenges collectively pushed me to:
 * Progress tracking - with large datasets, it might be useful for users to see real-time progress on the status of their request (perhaps have a countdown completion timer)
 * Set up automated tests for core functionalities 
 * More advanced ReadMe - with further time, perhaps expanding this ReadMe with ways developers can contribute/customise the project for their own needs would be great
+
+
+## Troubleshooting
+
+### Possible hiccups 
+
+* If any import problem/issues show up, dependencies might not work correctly. Please check and make sure the path to the interpreter/virtual environment is set up correctly 
+* Issues with opening .xlsx file - Mac users may experience this, please first try opening with Google sheets
+* If opening with Google sheets is unsuccessful please try the following curl command:
+
+curl -X POST http://localhost:5002/translate \
+-H "Content-Type: application/json" \
+-d '{"q":"hello","source":"en","target":"es"}'
+{"translatedText":"hola"}
+
+* For the above, if you receive "curl: (52) Empty reply from server" then LibreTranslate has not been set up correctly in a Docker container. Please use "docker ps" to show all running containers and their IDs. Then use "docker restart CONTAINER ID". Please try the curl command again. 
+* For further issues, please feel free to email me on: nishadrai14@gmail.com and I'll be more than happy to assist. 
 
 
 ## Credits
