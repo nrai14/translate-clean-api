@@ -5,3 +5,5 @@ services:
     ports:
       - "5002:5000"
     restart: unless-stopped
+    environment:
+      - ENABLED_LANGUAGES=en,fr,es,de

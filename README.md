@@ -40,10 +40,10 @@ The following are required to be installed on your system to get the development
 ### Step 4: Start the LibreTranslate API
 - In the terminal run:
     * docker-compose up -d
-(this will create the containerised LibreTranslate on port 5002)
+(this will conveniently create the containerised LibreTranslate on port 5002 with the details found in docker-compose.yml file)
     * docker-compose ps
 (checks the service is running)
-(verify it's running with curl http://localhost:5002 - you should see a response)
+
 
 
 
@@ -186,6 +186,7 @@ These challenges collectively pushed me to:
 ### Possible hiccups 
 
 * If any import problem/issues show up, dependencies might not work correctly. Please check and make sure the path to the interpreter/virtual environment is set up correctly 
+* If you see "Is the docker daemon running?" then you need to open Docker before running the Dockcer commands
 * Issues with opening .xlsx file - Mac users may experience this, please first try opening with Google sheets
 * If opening with Google sheets is unsuccessful please try the following curl command:
 
