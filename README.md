@@ -1,4 +1,4 @@
-# Translatate-Clean-API (ReadMe Documentation)
+# Translate-Clean-API (ReadMe Documentation)
 
 ## Description
 
@@ -13,84 +13,84 @@ Flask-based translation API. The service validates, cleanses, and translate Engl
 - [Credits](#credits)
 - [License](#license)
 
+
 # Getting started guide 
 
 ## Installation
 
 The following are required to be installed on your system to get the development environment running:
 
-* Node.js (version 16 or later) and npm
-* Python (version 3.10 or later) and pip
-* Docker
+* Node.js (version 16 or later) and npm: For testing scalable wrappers if needed.
+* Python (version 3.10 or later) and pip: Required for running the Flask backend.
+* Docker: To containerise and run the LibreTranslate API.
+* Flask and Dependencies: Install Flask, SpellChecker, and other Python dependencies (preferably in a virtual environment).
+* LibreTranslate Docker Image: Ensure you pull the latest LibreTranslate image with docker.
 
 ### Step 1: Clone the Repository 
 - In the terminal run:
-    * git clone git@github.com:nrai14/translate-clean-api.git
-    * then "cd" into the folder
+    `git clone git@github.com:nrai14/translate-clean-api.git`
+    * then `cd` into the folder
 
 ### Step 2: Install Node.js Dependencies 
-    * npm install
+    `npm install`
 
 ### Step 3: Install Python Dependencies
 - In the terminal run:
-    * python3 -m venv venv 
-    * source venv/bin/activate (for Mac) or venv/Scripts/activate (for Windows)
-    * pip install -r requirements.txt 
+    `python3 -m venv venv` 
+    `source venv/bin/activate` (for Mac) or `venv/Scripts/activate` (for Windows)
+    `pip install -r requirements.txt` 
 
 ### Step 4: Start the LibreTranslate API
 - In the terminal run:
-    * docker-compose up -d
+    `docker-compose up -d`
 (this will conveniently create the containerised LibreTranslate on port 5002 with the details found in docker-compose.yml file)
-    * docker-compose ps
+    `docker-compose ps`
 (checks the service is running)
-
-
 
 
 ## Usage
 
 ### Step 1: Run the Flask Backend
-* In the terminal enter: source venv/bin/activate
-* In the terminal enter: flask run 
+* If not already in the virtual environment, please enter the following in the terminal:
+    `source venv/bin/activate`
+* In the terminal enter:
+    `flask run` 
 (the backend will be available at http://127.0.0.1:5000)
 
 ### Step 2: Prepare the Input File
-* Place words you wish to translate within the Excel file - data/wordsToTranslate.xlsx
-* Ensure words are only the first column 
-* If you want to see how this API works, the data/wordsToTranslate.xlsx is already filled with data to try
+* Place the English words you wish to translate into the first column of the Excel file, data/wordsToTranslate.xlsx
+* If you want to see how this API works, the data/wordsToTranslate.xlsx is already filled with data to try.
 
 ### Step 3: Run the Node.js wrapper
-* Open a split terminal 
-* In the split terminal enter: - npm run start 
+* Open a separate terminal 
+* In the split terminal enter:
+    `npm run start` 
 (this runs the wrapper, processes translations, and saves the result as an .xlsx file in the results folder)
 
 ### Step 4: Check results
 * Open the results/translatedWords.xlsx file to view the translations
-* Each target langauge will have its own sheet
+* Each target language will have its own sheet
 
 ### DEMO VIDEO (with some relaxing background music)
 
 https://github.com/user-attachments/assets/6b13e6ef-4339-453d-8187-5a87842cdf50
 
-
-
 ## Step 5: Stop Service 
 - When you're finished, run this in the terminal:
-    * docker-compose down 
+    `docker-compose down`
 
 ### Things to note:
-* There could be excel file compatibility issues - e.g. on macOS, if the file doesn't open immediately, please use Google Sheets
+* There could be excel file compatibility issues - e.g. on macOS, if the file doesn't open immediately, please use Google Sheets.
 * For any set up issues, please see [Troubleshooting](#troubleshooting)
-
 
 
 ## My Experience
 
 ### What was my motivation?
 
-I embarked on this project to push my technical skills to the next level. Having worked with Python, JavaScript and Java in the past, I wanted to challenge myself by incorporating new tools like Docker and integrating multiple APIs into a cohesive application. My goal was to gain hands-on experience with setting up Flask backends, using Node.js wrappers, and tackling real-world issues like batch processing, error handling, and scalability.
+I embarked on this project to push my technical skills to the next level. With prior experience in Python, JavaScript, and Java, I aimed to challenge myself by incorporating new tools like Docker and integrating multiple APIs into a cohesive application. My goal was to gain hands-on experience with setting up Flask backends, using Node.js wrappers, and tackling real-world issues like batch processing, error handling, and scalability.
 
-This project was also an opportunity to revisit foundational skills I learned during Makers Academy, such as test-driven development and Agile practices, while exploring new technologies that are relevant in today’s software development landscape.
+This project allowed me to revisit foundational skills I learned during Makers Academy, such as test-driven development and Agile practices, while exploring new technologies that are relevant in today’s software development landscape.
 
 ### Why did I build this project? 
 
@@ -117,21 +117,24 @@ New Skills:
 
 ### What particular libraries? Why?
 
-* Flask: Lightweight framework for building the backend.
-* SpellChecker: To clean and correct input words before translation.
-* Docker: To containerise and deploy LibreTranslate for local API calls.
-* LibreTranslate: Translation API for handling multilingual requests.
-* Node.js: To test a scalable wrapper for batch translation.
+* Flask: A lightweight and flexible Python web framework used to build the backend API, allowing easy handling of HTTP requests and responses.
+* SpellChecker: Utilised for pre-translation word cleaning and correction to ensure accurate input before translation, especially for misspelled words.
+* Docker: Used to containerise and deploy the LibreTranslate API, enabling seamless local deployment and ensuring environment consistency.
+* LibreTranslate: An open-source translation API integrated into the project for handling multilingual requests without external API dependencies or limitations.
+* Node.js: Experimented with for testing scalability and performance of batch translation wrappers in non-Python environments.
+
+### Which translation API did I use? Why? 
+
+* I chose LibreTranslate for this project due to its open-source nature, which allows self-hosting and avoids the limitations of commercial APIs like Google Translate. LibreTranslate provides support for multiple languages and ensures greater flexibility and cost efficiency for localised and scalable translation needs.
 
 ### Assumptions 
-
 #### Design Assumptions
 - Assumed input would be mostly single words in English
 - Believed LibreTranslate's batch processing would work without modification
 - Assumed Docker would handle API hosting seamlessly
 
 #### Mistaken Assumptions
-- Somehow embarrassingly overlooked the translate-wrapper.ts and went down a rabbit hole of using xlwings/pandas to manually extract data
+- Initially overlooked translate-wrapper.ts and manually attempted data extraction using xlwings/Pandas, which was inefficient
 - Thought LibreTranslate would process a bulk list of words without adapting its input format
 
 ### Pragmatic Shortcuts 
@@ -140,10 +143,9 @@ New Skills:
 - Using LibreTranslate instead of perhaps implementing my own translation logic (this would definitely take a much longer time)
 
 
+## What challenges did I experience? How did I overcome them? 
 
-### What challenges did I experience? How did I overcome them? 
-
-My first major challenge involved setting up the LibreTranslate library, which was critical for handling translations in my project. Initially, I tried installing LibreTranslate directly into my Python environment. However, I encountered persistent issues with the installation of a dependency called PyICU, which required compiling native C++ code and configuring paths for the ICU library. Despite trying multiple fixes, including setting environment variables, reinstalling tools like pkg-config, and even forcing prebuilt wheels, the build process for PyICU kept failing.
+My first major challenge involved setting up the LibreTranslate library, which was the core tool for handling translations in my project. Initially, I tried installing LibreTranslate directly into my Python environment. However, I encountered persistent issues with the installation of a dependency called PyICU, which required compiling native C++ code and configuring paths for the ICU library. Despite trying multiple fixes, including setting environment variables, reinstalling tools like pkg-config, and even forcing prebuilt wheels, the build process for PyICU kept failing.
 
 This process was complicated by the fact that the installation required deep integration with system-level libraries and C++ compilers, which are highly sensitive to system configurations. On macOS, for instance, managing dependencies through tools like Homebrew added another layer of complexity, as it introduced version mismatches and path issues. The situation was further exacerbated by the fact that these problems were specific to my system, making generalised solutions ineffective.
 
@@ -168,58 +170,73 @@ These challenges collectively pushed me to:
 - Improve my ability to pivot and adapt to constraints.
 - Each obstacle turned into an opportunity to enhance both the functionality of the project and my technical skills.
 
-### Extra features?
+### Extra Features
 
 - Performance Logging 
 - Error Handling
 - Self-Hosting with Docker (no need for API keys/quotas imposed + No external dependencies + Unlimited requests)
-
+  
 ### If I had more time, what else would I implement? 
 
-* Advanced batch processing - perhaps something that could configure batch sizes/dyanmic handling to optimise translation time for very, very large datasets 
-* Front-End Interfact - add simple UI ot allow users to upload files and select target langauge directly. This would make user experience more convenient by removing the need for manual setup 
+* Advanced batch processing - perhaps something that could configure batch sizes/dynamic handling to optimise translation time for very, very large datasets
+* Front-End Interface - add simple UI ot allow users to upload files and select target language directly. This would make user experience more convenient by removing the need for manual setup
 * Enhanced spell checking - there might be more advanced spell-checking functionality with other APIs
-* Custom target language - allow users to choose what langauge they wish to translate to
+* Custom target language - allowing users to select custom languages dynamically rather than relying on predefined configurations
 * Progress tracking - with large datasets, it might be useful for users to see real-time progress on the status of their request (perhaps have a countdown completion timer)
-* More detailed mocking external APIs - API timeouts/netowrk errors/weird response formats/error codes
-* Load and Performance testing - see if my app can handle even larger payloads/many requests without crashing 
-* More advanced ReadMe - with further time, perhaps expanding this ReadMe with ways developers can contribute/customise the project for their own needs would be great
+* More detailed mocking external APIs - API timeouts/network errors/weird response formats/error codes
+* Load and Performance testing - see if my app can handle even larger payloads/many requests without crashing
+* More advanced ReadMe - with further time, perhaps expanding this ReadMe with ways developers can contribute/customise the project for their own needs would be great and adding detailed screenshots
 
 
 
 ## Troubleshooting
 
-### Possible hiccups 
+### Possible Hiccups 
 
-* If any import problem/issues show up, dependencies might not work correctly. Please check and make sure the path to the interpreter/virtual environment is set up correctly 
-* If you see "Is the docker daemon running?" then you need to open Docker before running the Dockcer commands
-* Issues with opening .xlsx file - Mac users may experience this, please first try opening with Google sheets
+* If any import problem/issues show up, dependencies might not work correctly. Please check and make sure the path to the interpreter/virtual environment is set up correctly. 
+* If you see "Is the Docker Daemon running?" then you need to open Docker before running the Docker commands.
+* Issues with opening .xlsx file - Mac users may experience this, please first try opening with Google sheets.
 * If opening with Google sheets is unsuccessful please try the following curl command:
 
-curl -X POST http://localhost:5002/translate \
+`curl -X POST http://localhost:5002/translate \
 -H "Content-Type: application/json" \
--d '{"q":"hello","source":"en","target":"fr"}'
+-d '{"q":"hello","source":"en","target":"fr"}'`
 
 * The above should return this if it's all working:
+
 {"translatedText":"bonjour"}
 
-* For the above, if you receive "curl: (52) Empty reply from server" then LibreTranslate has not been set up correctly in a Docker container. Please use "docker ps" to show all running containers and their IDs. Then use "docker restart CONTAINER ID". Please try the curl command again. 
-* Note: sometimes in the split terminal, where you are running the "npm run start" being in the virtual environment causes issues. Run "deactivate" if you see you are in "venv" in the split terminal
-* Occasionally, if you have multiple containers (non-active) running, Docker might not have the space to run properly. There is an option to run "docker container prune" in the terminal to remove all stopped containers to reclaim space. 
+* For the above, if you receive "curl: (52) Empty reply from server" then LibreTranslate has not been set up correctly in a Docker container. Please use `docker ps` to show all running containers and their IDs. Then use `docker restart CONTAINER ID`. Please try the curl command again. 
+* Note: sometimes in the split terminal, where you are running the `npm run start` being in the virtual environment causes issues. Run `deactivate` if you see you are in "venv" in the split terminal.
+* Occasionally, if you have multiple containers (non-active) running, Docker might not have the space to run properly. There is an option to run "docker container prune" in the terminal to remove all stopped containers to reclaim space.
+* Docker set up time:
+    *The LibreTranslate container may take some time to initialise, especially during the first run, as it pulls the necessary images and sets up the environment. The setup time can also vary depending on your hardware specifications—   
+    systems with limited CPU, RAM, or disk space may experience longer delays.
+    *If you encounter errors like "Empty reply from server," ensure the container has fully started before making requests. You can verify the status with:
+        `docker-compose ps`
 * For further issues, please feel free to email me on: nishadrai14@gmail.com and I'll be more than happy to assist. 
 
 
 ## Testing 
 
 - This project uses Pytest for testing - covers both API endpoints and utility functions. 
-- Important for confidence when making changes in the future
+- Important for confidence when making changes in the future.
 - In the command (if not already done so):
-    * pip install -r requirements.txt 
-(Because we need Pytest)
-    * PYTHONPATH=. pytest
+    `pip install -r requirements.txt`
+    `PYTHONPATH=. pytest`
 (Runs all tests, navigates to the project's root directory and executes)
-- Test results will be displayed in the terminal 
-- Uses requests-mock to simulate LibreTranslate API during testing (ensures tests don't dpeend on the external API being available)
+- Test results will be displayed in the terminal. 
+- Uses requests-mock to simulate LibreTranslate API during testing (ensures tests don't depend on the external API being available)
+
+
+## Features
+
+* Spell Check and Cleaning (remove special characters and correct misspellings)
+* Translation API Integration (POST requests to LibreTranslate's API which is containerised with Docker)
+* Error Handling (returns error responses for validation and API errors)
+* Batch translations (for faster processing)
+* Logs processing time for key operations (e.g., cleaning and translation) to provide insights into potential bottlenecks.
+
 
 ## Credits
 
@@ -228,20 +245,13 @@ curl -X POST http://localhost:5002/translate \
 * https://docs.docker.com/desktop/setup/install/mac-install/ (Docker Setup Documentation)
 * https://www.boot.dev/lessons/6f30791a-eeb5-4485-900c-6c8c0b760f8a (Docker Tutorial)
 * https://www.codecademy.com/resources/docs/python/regex/sub (For writing cleanse_method)
-* https://pyspellchecker.readthedocs.io/en/latest/ (psyspellchecker documentation)
+* https://pyspellchecker.readthedocs.io/en/latest/ (pyspellchecker documentation)
 * https://github.com/LibreTranslate/LibreTranslate (LibreTranslate GitHub Repo)
 * https://chatgpt.com/share/674daca7-a1ec-8006-b85f-0bb076f82fdc (Conversation with ChatGPT on optimising processing time)
 * https://www.geeksforgeeks.org/time-perf_counter-function-in-python/ (Logging timing for processes)
-* https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide (For writing a banging ReadMe document)
+* https://coding-bo-camp.github.io/full-stack/github/professional-readme-guide (For writing a banging ReadMe document)
 
-## Features
-
-* Spell Check and Cleaning (remove special characters and correct misspellings)
-* Translation API Integration (POST requests to LibreTranslate's API which is containerised with Docker)
-* Error Handling (returns error responses for validation and API errors)
-* Batch translations (for faster processing)
-* Logging and Performance monitoring (measures + logs time for cleaning words. Provides insights into bottlenecks)
-
+  
 ## License
 
 MIT License
