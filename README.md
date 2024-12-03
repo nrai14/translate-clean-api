@@ -48,6 +48,7 @@ The following are required to be installed on your system to get the development
 (checks the service is running)
 
 
+
 ## Usage
 
 ### Step 1: Run the Flask Backend
@@ -84,26 +85,27 @@ https://github.com/user-attachments/assets/6b13e6ef-4339-453d-8187-5a87842cdf50
 * For any set up issues, please see [Troubleshooting](#troubleshooting)
 
 
-## My Experience
 
-### What was my motivation?
+# My Experience
+
+## What was my motivation?
 
 I embarked on this project to push my technical skills to the next level. With prior experience in Python, JavaScript, and Java, I aimed to challenge myself by incorporating new tools like Docker and integrating multiple APIs into a cohesive application. My goal was to gain hands-on experience with setting up Flask backends, using Node.js wrappers, and tackling real-world issues like batch processing, error handling, and scalability.
 
 This project allowed me to revisit foundational skills I learned during Makers Academy, such as test-driven development and Agile practices, while exploring new technologies that are relevant in today’s software development landscape.
 
-### Why did I build this project? 
+## Why did I build this project? 
 
 The core reason for building this project was to enhance my understanding of full-stack development and API integrations. By using tools like Flask, Node.js, and LibreTranslate, I created a functional pipeline for translating and managing data across multiple languages. This gave me experience working with:
 
 * Python libraries like Flask, Pandas, and SpellChecker for efficient backend processes.
 * Docker to containerise and manage the LibreTranslate API.
 
-### What problem does it solve?
+## What problem does it solve?
 
 This project automates the otherwise tedious task of translating large datasets into multiple languages. It’s designed for scenarios where businesses or users need batch translations efficiently, with spell-checking and data cleaning included. It bridges the gap between raw user input and structured, high-quality translations stored in a sharable format (Excel).
 
-### What did I learn?
+## What did I learn?
 
 This project was a blend of revisiting old knowledge and learning new skills:
 
@@ -115,7 +117,7 @@ New Skills:
 * Flask Debugging: Overcoming issues like port conflicts and environmental variable persistence.
 * Spell Checker Integration: Handling real-world edge cases like invalid words and preparing data for translation.
 
-### What particular libraries? Why?
+## What particular libraries? Why?
 
 * Flask: A lightweight and flexible Python web framework used to build the backend API, allowing easy handling of HTTP requests and responses.
 * SpellChecker: Utilised for pre-translation word cleaning and correction to ensure accurate input before translation, especially for misspelled words.
@@ -123,17 +125,18 @@ New Skills:
 * LibreTranslate: An open-source translation API integrated into the project for handling multilingual requests without external API dependencies or limitations.
 * Node.js: Experimented with for testing scalability and performance of batch translation wrappers in non-Python environments.
 
-### Which translation API did I use? Why? 
+## Which translation API did I use? Why? 
 
 * I chose LibreTranslate for this project due to its open-source nature, which allows self-hosting and avoids the limitations of commercial APIs like Google Translate. LibreTranslate provides support for multiple languages and ensures greater flexibility and cost efficiency for localised and scalable translation needs.
 
-### Assumptions 
-#### Design Assumptions
+## Assumptions 
+
+### Design Assumptions
 - Assumed input would be mostly single words in English
 - Believed LibreTranslate's batch processing would work without modification
 - Assumed Docker would handle API hosting seamlessly
 
-#### Mistaken Assumptions
+### Mistaken Assumptions
 - Initially overlooked translate-wrapper.ts and manually attempted data extraction using xlwings/Pandas, which was inefficient
 - Thought LibreTranslate would process a bulk list of words without adapting its input format
 
