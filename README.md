@@ -32,7 +32,7 @@ The following are required to be installed on your system to get the development
     * then `cd` into the folder
 
 ### Step 2: Install Node.js Dependencies 
-    `npm install`
+    npm install
 
 ### Step 3: Install Python Dependencies
 - In the terminal run:
