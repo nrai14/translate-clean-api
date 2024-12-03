@@ -252,7 +252,7 @@ These challenges collectively pushed me to:
 * https://github.com/LibreTranslate/LibreTranslate (LibreTranslate GitHub Repo)
 * https://chatgpt.com/share/674daca7-a1ec-8006-b85f-0bb076f82fdc (Conversation with ChatGPT on optimising processing time)
 * https://www.geeksforgeeks.org/time-perf_counter-function-in-python/ (Logging timing for processes)
-* https://coding-bo-camp.github.io/full-stack/github/professional-readme-guide (For writing a banging ReadMe document)
+* https://coding-bo-camp.github.io/full-stack/github/professional-readme-guide (For tips on crafting an excellent ReadMe document)
 
   
 ## License
