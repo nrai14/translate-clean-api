@@ -68,6 +68,12 @@ The following are required to be installed on your system to get the development
 * Open the results/translatedWords.xlsx file to view the translations
 * Each target langauge will have its own sheet
 
+### DEMO VIDEO (with some relaxing background music)
+
+https://github.com/user-attachments/assets/6b13e6ef-4339-453d-8187-5a87842cdf50
+
+
+
 ## Step 5: Stop Service 
 - When you're finished, run this in the terminal:
     * docker-compose down 
