@@ -213,9 +213,9 @@ These challenges collectively pushed me to:
 * Note: sometimes in the split terminal, where you are running the `npm run start` being in the virtual environment causes issues. Run `deactivate` if you see you are in "venv" in the split terminal.
 * Occasionally, if you have multiple containers (non-active) running, Docker might not have the space to run properly. There is an option to run "docker container prune" in the terminal to remove all stopped containers to reclaim space.
 * Docker set up time:
-    *The LibreTranslate container may take some time to initialise, especially during the first run, as it pulls the necessary images and sets up the environment. The setup time can also vary depending on your hardware specifications—   
+    * The LibreTranslate container may take some time to initialise, especially during the first run, as it pulls the necessary images and sets up the environment. The setup time can also vary depending on your hardware specifications—   
     systems with limited CPU, RAM, or disk space may experience longer delays.
-    *If you encounter errors like "Empty reply from server," ensure the container has fully started before making requests. You can verify the status with:
+    * If you encounter errors like "Empty reply from server," ensure the container has fully started before making requests. You can verify the status with:
         `docker-compose ps`
 * For further issues, please feel free to email me on: nishadrai14@gmail.com and I'll be more than happy to assist. 
 
